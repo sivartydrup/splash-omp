@@ -1,0 +1,10 @@
+# OS / editor noise
+.DS_Store
+*.swp
+
+# local scratch
+*.log
+tmp/
+
+# local omp backups created by scripts/install.sh, if ever made in-tree
+*.bak-*

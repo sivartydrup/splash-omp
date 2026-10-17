@@ -1,0 +1,35 @@
+# oh-my-pi (omp) configuration for a local Splash server.
+#
+# This is the model setup behind the splash-omp extension, copied from a
+# working setup. Merge it into ~/.omp/agent/config.yml (scripts/install.sh
+# does this for you; it never overwrites an existing file — it backs it up).
+#
+# Every role points at the ONE model the server actually serves
+# (SPLASH_M1_MODEL, default mlx-community/Qwen3.8-27B-4bit). A request
+# naming a model the server does not serve gets a 404, so roles must
+# match the served model. To run a different model for a role, see
+# "Serving a different model" in the README.
+
+setupVersion: 2
+modelRoles:
+  # Main session: the served model, low reasoning effort.
+  default: splash-m1/mlx-community/Qwen3.8-27B-4bit:low
+task:
+  agentModelOverrides:
+    # Subagents use the same served model. (Point these at a second
+    # provider + port if you want a different, e.g. smaller, model for
+    # subagents — a single server cannot serve two models at once.)
+    local-worker: splash-m1/mlx-community/Qwen3.8-27B-4bit
+    task: splash-m1/mlx-community/Qwen3.8-27B-4bit
+  disabledAgents: []
+plan:
+  autosave: true
+compaction:
+  enabled: true
+  thresholdTokens: 200000
+defaultThinkingLevel: low
+provider:
+  appendOnlyContext: "on"
+display:
+  showTurnTime: true
+  showTokenUsage: true
