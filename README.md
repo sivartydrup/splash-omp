@@ -48,7 +48,7 @@ starts reuse the cache.
 ## Quick start
 
 ```bash
-git clone <your-fork-or-this-repo> ~/coding/splash-omp
+git clone https://github.com/sivartydrup/splash-omp.git ~/coding/splash-omp
 cd ~/coding/splash-omp
 ./scripts/install.sh
 omp            # from any project; the server comes up automatically
